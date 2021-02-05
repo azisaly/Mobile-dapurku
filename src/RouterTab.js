@@ -51,7 +51,7 @@ const BottomNavigator = () => {
                 }} />
 
 
-            <Tab.Screen name="Favorite" component={Favorite}
+            {/* <Tab.Screen name="Favorite" component={Favorite}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ color }) => (
@@ -65,7 +65,7 @@ const BottomNavigator = () => {
                         </View>
                     )
                 }}
-            />
+            /> */}
         </Tab.Navigator>
     )
 };

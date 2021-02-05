@@ -2,12 +2,13 @@ import React from 'react'
 import { StyleSheet, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
-const ItemsResep = () => {
-    return (
+const ItemsResep = (props) => {
+    let state = props.state
 
-        <TouchableOpacity style={styles.itemsCard}>
-            <Image style={styles.image} source={require('../assets/food/opor.png')} />
-            <Text style={styles.title}>Ayam goreng kecap manis</Text>
+    return (
+        <TouchableOpacity style={styles.itemsCard} onPress={props.navigation}>
+            <Image style={styles.image} source={{ uri: props.image }} />
+            <Text style={styles.title}>{props.title}</Text>
         </TouchableOpacity>
     )
 }

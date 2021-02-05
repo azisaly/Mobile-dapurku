@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native'
 
 const ItemsPopular = (props) => {
-    console.log(props)
     return (
         <TouchableOpacity style={styles.itemPopular} id={props.id}>
             <View style={styles.cardImage}>

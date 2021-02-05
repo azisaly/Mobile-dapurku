@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import OnBoardingScreen from './screens/OnBoardingScreen'
 import BottomNavigator from './RouterTab'
 import Details from './component/Details';
+import Camera from './component/Camera';
 
 
 
@@ -18,6 +19,7 @@ const Router = () => {
                 <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} />
                 <Stack.Screen name="BottomNavigator" component={BottomNavigator} />
                 <Stack.Screen name="Details" component={Details} />
+                <Stack.Screen name="Camera" component={Camera} />
             </Stack.Navigator>
         </NavigationContainer>
     )

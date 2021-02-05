@@ -38,9 +38,9 @@ const HomeScreen = (props) => {
                         fontWeight: "bold"
                     }}>Menu Favorit</Text>
                 </View>
-                <ScrollView horizontal={true}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                     <View style={{ marginTop: 10, display: 'flex', flexDirection: 'row' }}>
-                        <ItemsPopular id={1} title="Opor Ayam" Image={require('../assets/food/opor.png')} />
+                        <ItemsPopular title="Opor Ayam" Image={require('../assets/food/opor.png')} />
                         <ItemsPopular title="Ayam kecap" Image={require('../assets/food/ayamKecap.jpg')} />
                         <ItemsPopular title="Daging Asap" Image={require('../assets/food/dagingAsap.jpg')} />
                         <ItemsPopular title="Soto Betawi" Image={require('../assets/food/soto-betawi.jpg')} />

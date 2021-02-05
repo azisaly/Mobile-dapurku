@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native'
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
@@ -8,38 +9,63 @@ import ItemsResep from '../component/ItemsResep';
 
 
 
-const BooksMenu = () => {
+const BooksMenu = props => {
     const [resep, setResep] = useState([]);
     const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
     const [filterResep, setFilterResep] = useState([]);
 
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get("http://my-json-server.typicode.com/azisaly/dummydatadapurku/resep")
+            .then(response => {
+                setResep(response.data)
+                setLoading(false)
+            })
+            .catch(err => console.log(err))
+    }, []);
+
+
+
+    useEffect(() => {
+        setFilterResep(
+            resep.filter((reseps) =>
+                reseps.title.toLowerCase().includes(search.toLowerCase())
+            )
+
+        );
+    }, [search, resep]);
+
+
     return (
+
         <View style={styles.container}>
-            {/* <KeyboardAvoidingView behavior="position"> */}
             <View style={styles.header}>
                 <View style={styles.search}>
                     <Icon name="search" size={20} />
-                    <TextInput placeholder="Cari Menu Kesukaanmu" />
+                    <TextInput placeholder="Cari Menu Kesukaanmu" onChangeText={(text) => setSearch(text)} />
                 </View>
             </View>
 
-            <ScrollView>
-                <TouchableOpacity>
-                    <View style={styles.camera}>
-                        <Image style={{ height: 280, flex: 1 }} source={require('../assets/image/kamera.png')} />
-                    </View>
-                    {/* </KeyboardAvoidingView> */}
-                </TouchableOpacity>
 
-
-                <View style={styles.conatainerResep}>
-                    <ItemsResep />
-                    <ItemsResep />
-                    <ItemsResep />
-                    <ItemsResep />
-                    <ItemsResep />
+            <TouchableOpacity onPress={() => props.navigation.navigate('Camera')}>
+                <View style={styles.camera}>
+                    <Image style={{ height: 200, flex: 1 }} source={require('../assets/image/kamera.png')} />
                 </View>
+            </TouchableOpacity>
+
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.conatainerResep}>
+                    {filterResep.map((e, i) => {
+
+                        return (
+                            <ItemsResep key={i} title={e.title} image={e.image} navigation={(id) => props.navigation.navigate('Details', { resepid: e.id, state: filterResep })} />
+                        )
+
+                    })}
+
+                </View >
             </ScrollView>
 
 
@@ -90,7 +116,7 @@ const styles = StyleSheet.create({
     },
 
     camera: {
-        height: 260,
+        height: 200,
         backgroundColor: '#E0CACA',
         marginTop: 10,
         flexDirection: 'row',
