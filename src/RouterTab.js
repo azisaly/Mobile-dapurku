@@ -6,6 +6,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import BooksMenu from './screens/BooksMenu'
 import HomeScreen from './screens/HomeScreen'
 import Favorite from './screens/Favorite'
+import Setting from './screens/Setting'
 
 
 const Tab = createMaterialBottomTabNavigator()
@@ -51,7 +52,7 @@ const BottomNavigator = () => {
                 }} />
 
 
-            {/* <Tab.Screen name="Favorite" component={Favorite}
+            <Tab.Screen name="Favorite" component={Favorite}
                 options={{
                     tabBarLabel: '',
                     tabBarIcon: ({ color }) => (
@@ -65,7 +66,23 @@ const BottomNavigator = () => {
                         </View>
                     )
                 }}
-            /> */}
+            />
+
+            <Tab.Screen name="Setting" component={Setting}
+                options={{
+                    tabBarLabel: '',
+                    tabBarIcon: ({ color }) => (
+                        <View>
+                            {
+                                color == "#FFFF00" ?
+                                    <Image source={require('./assets/image/Setting-active.png')} style={{ height: 30, width: 30 }} />
+                                    : <Image source={require('./assets/image/setting.png')} style={{ height: 30, width: 25 }} />
+                            }
+
+                        </View>
+                    )
+                }}
+            />
         </Tab.Navigator>
     )
 };

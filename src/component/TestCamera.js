@@ -1,14 +1,13 @@
 import React from 'react'
-import { View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { useCamera } from 'react-native-camera-hooks';
 
-const FunctionalComponentExample = ({ initialProps }) => {
+const TestCamera = ({ initialProps }) => {
     const [
         { cameraRef, type, ratio, autoFocus, autoFocusPoint, isRecording },
         {
             toggleFacing,
-            touchToFocus,
             textRecognized,
             facesDetected,
             recordVideo,
@@ -17,30 +16,29 @@ const FunctionalComponentExample = ({ initialProps }) => {
     ] = useCamera(initialProps);
 
     return (
+
         <View style={{ flex: 1 }}>
-            <RNCamera
+            <View style={{ flex: 1, backgroundColor: 'powderblue' }} />
+            <View style={{ flex: 1, backgroundColor: 'skyblue' }} />
+            <View style={{ flex: 1, backgroundColor: 'steelblue' }} />
+            {/* 
+            {/* <RNCamera
                 ref={cameraRef}
                 autoFocusPointOfInterest={autoFocusPoint.normalized}
                 type={type}
                 ratio={ratio}
-                style={{ flex: 1 }}
+                style={{ flex: 1, }}
                 autoFocus={autoFocus}
                 onTextRecognized={textRecognized}
-                onFacesDetected={facesDetected}
-            />
+                onFacesDetected={facesDetected} 
+            /> */}
 
-            <TouchableWithoutFeedback
-                style={{
-                    flex: 1,
-                }}
-                onPress={touchToFocus}
-            />
-
+            {/* 
             <TouchableOpacity
                 testID="button"
                 onPress={toggleFacing}
                 style={{ width: '100%', height: 45 }}>
-                {type}
+                <Text>{type}</Text>
             </TouchableOpacity>
 
             {!isRecording && (
@@ -58,10 +56,12 @@ const FunctionalComponentExample = ({ initialProps }) => {
                     }}
                     style={{ width: '100%', height: 45 }}
                 />
-            )}
+            )} */}
+
         </View>
+
+
     );
 };
 
-
-export default FunctionalComponentExample
+export default TestCamera
